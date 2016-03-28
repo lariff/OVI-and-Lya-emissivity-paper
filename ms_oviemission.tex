@@ -1,0 +1,469 @@
+\documentclass[useAMS,usenatbib]{mn2e}
+\input psfig.sty
+\usepackage{array}
+%\usepackage{graphicx}
+%\usepackage{epstopdf}
+
+\voffset=-0.8in
+
+\def \gas {\textsc{gasoline}}
+\def \gastwo {\textsc{ESF-gasoline2}}
+\def \changa {\textsc{changa}}
+\def \mean#1{\left< #1 \right>}
+
+%%MISC
+\def \aj {AJ}
+\def \apj {ApJ}
+\def \apjl {ApJL}
+\def \mnras {MNRAS}
+\def \apjs {ApJS}
+\def \aap {A\&A}
+\def \nat {Nature}
+\def \pasp {PASP}
+\def \na {NewA}
+
+\def \etal {et~al.~}
+\def \eg{e.g.}
+\def \Section{\S}
+\def \spose#1{\hbox  to 0pt{#1\hss}}  
+\def \lta{\mathrel{\spose{\lower 3pt\hbox{$\sim$}}\raise  2.0pt\hbox{$<$}}}
+\def \gta{\mathrel{\spose{\lower  3pt\hbox{$\sim$}}\raise 2.0pt\hbox{$>$}}}
+\def \ion#1#2{#1{\footnotesize{#2}}\relax}
+\def \ha       {H$\alpha$}
+\def \hi       {\ion{H}{I}}
+\def \hii      {\ion{H}{II}}
+\def \oii      {[\ion{O}{II}]}
+
+%%UNITS
+\def \kmsmpc {\>{\rm km}\,{\rm s}^{-1}\,{\rm Mpc}^{-1}}
+\def \kms {\ifmmode  \,\rm km\,s^{-1} \else $\,\rm km\,s^{-1}  $ \fi }
+\def \kpc {\ifmmode  {\rm kpc}  \else ${\rm  kpc}$ \fi  }  
+\def \hkpc {\ifmmode  {h^{-1}\rm kpc}  \else ${h^{-1}\rm kpc}$ \fi  }  
+\def \hMpc {\ifmmode  {h^{-1}\rm Mpc}  \else ${h^{-1}\rm Mpc}$ \fi  }  
+\def \Msun {\ifmmode \rm M_{\odot} \else $\rm M_{\odot}$ \fi}
+\def \hMsun {\ifmmode h^{-1}\,\rm M_{\odot} \else $h^{-1}\,\rm M_{\odot}$ \fi}
+\def \hhMsun {\ifmmode h^{-2}\,\rm M_{\odot}\else $h^{-2}\,\rm M_{\odot}$ \fi}
+\def \Lsun {\ifmmode L_{\odot} \else $L_{\odot}$ \fi} 
+\def \hhLsun {\ifmmode h^{-2}\,\rm L_{\odot} \else $h^{-2}\,\rm L_{\odot}$ \fi}
+
+%%COSMOLOGY
+
+\def\LCDM{$\Lambda$CDM }
+\def \LCDM {\ifmmode \Lambda{\rm CDM} \else $\Lambda{\rm CDM}$ \fi}
+\def \sig8 {\ifmmode \sigma_8 \else $\sigma_8$ \fi} 
+\def \Omegam {\ifmmode \Omega_{\rm m} \else $\Omega_{\rm m}$ \fi} 
+\def \Omegab {\ifmmode \Omega_{\rm b} \else $\Omega_{\rm b}$ \fi} 
+\def \Omegar {\ifmmode \Omega_{\rm r} \else $\Omega_{\rm r}$ \fi} 
+\def \fbar {\ifmmode f_{\rm bar} \else $f_{\rm bar}$ \fi} 
+\def \OmegaL {\ifmmode \Omega_{\rm \Lambda} \else $\Omega_{\rm \Lambda}$\fi} 
+\def \Deltavir {\ifmmode \Delta_{\rm vir} \else $\Delta_{\rm vir}$ \fi}
+\def \rhocrit {\ifmmode \rho_{\rm crit} \else $\rho_{\rm crit}$ \fi}
+
+%DARK MATTER
+\def \rs {\ifmmode r_{\rm s} \else $r_{\rm s}$ \fi} 
+\def \rh {\ifmmode r_{\rm h} \else $r_{\rm h}$ \fi} 
+\def \Rvir {\ifmmode R_{\rm vir} \else $R_{\rm vir}$ \fi}
+\def \Vvir {\ifmmode V_{\rm  vir} \else  $V_{\rm vir}$  \fi} 
+\def \Vmax {\ifmmode V_{\rm  max} \else  $V_{\rm max}$  \fi} 
+\def \Mvir {\ifmmode M_{\rm  vir} \else $M_{\rm  vir}$ \fi}  
+\def \Mhalo {\ifmmode M_{\rm halo} \else $M_{\rm  halo}$ \fi}  
+\def \Nvir {\ifmmode N_{\rm  vir} \else $N_{\rm  vir}$ \fi}  
+\def \Jvir {\ifmmode J_{\rm vir} \else $J_{\rm vir}$ \fi} 
+\def \Evir {\ifmmode E_{\rm vir} \else $E_{\rm vir}$ \fi} 
+\def \lam {\ifmmode \lambda  \else $\lambda$ \fi} 
+\def \lamp {\ifmmode \lambda^{\prime} \else $\lambda^{\prime}$  \fi} 
+\def \lampc {\ifmmode \lambda^{\prime}_{\rm c} \else
+  $\lambda^{\prime}_{\rm c}$  \fi} 
+
+\def \xoff {\ifmmode x_{\rm off} \else $x_{\rm off}$ \fi}
+\def \rhorms {\ifmmode \rho_{\rm rms} \else $\rho_{\rm rms}$ \fi}
+\def \qbar {\ifmmode \bar{q} \else $\bar{q}$ \fi}
+
+%%BARYONS
+\def \Mb {\ifmmode M_{\rm b} \else $M_{\rm b}$ \fi} 
+\def \eSF {\ifmmode \epsilon_{\rm SF} \else $\epsilon_{\rm SF}$ \fi} 
+\def \Md {\ifmmode M_{\rm d} \else $M_{\rm d}$ \fi} 
+\def \Mg {\ifmmode M_{\rm g} \else $M_{\rm g}$ \fi} 
+\def \Rb {\ifmmode R_{\rm b} \else $R_{\rm b}$ \fi} 
+\def \Rd {\ifmmode R_{\rm d} \else $R_{\rm d}$ \fi} 
+\def \Rg {\ifmmode R_{\rm g} \else $R_{\rm g}$ \fi} 
+\def \mgal {\ifmmode m_{\rm gal} \else $m_{\rm gal}$ \fi} 
+\def \rj {\ifmmode {\cal R}_j \else ${\cal R}_j$ \fi} 
+\def \lamgal {\ifmmode \lambda_{\rm gal} \else $\lambda_{\rm gal}$ \fi} 
+\def \Vcirc {\ifmmode V_{\rm circ} \else $V_{\rm circ}$ \fi} 
+\def \Vrot {\ifmmode V_{\rm rot} \else $V_{\rm rot}$ \fi} 
+\def \Vflat {\ifmmode V_{\rm flat} \else $V_{\rm flat}$ \fi} 
+\def \Mstar {\ifmmode M_{\rm star} \else $M_{\rm star}$ \fi} 
+\def \Mgas {\ifmmode M_{\rm gas} \else $M_{\rm gas}$ \fi} 
+\def \Mbar {\ifmmode M_{\rm bar} \else $M_{\rm bar}$ \fi} 
+
+%%MASS-TO-LIGHT RATIOS
+\def \DeltaIMF {\ifmmode \Delta_{\rm IMF} \else $\Delta_{\rm IMF}$ \fi}
+
+\def \VV {\ifmmode V_{\rm 2.2}/V_{200} \else $V_{2.2}/V_{200}$ \fi} 
+\def \dvr {\ifmmode \partial_{\rm VR} \else $\partial_{\rm VR}$ \fi} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[OVI Emssivity] {}
+
+\author[Zhang et al.]{Shuinai Zhang$^{1}$\thanks{snzhang@pmo.ac.cn}, Liang Wang$^{1,3}$,Taotao Fang$^{2}$, Li Ji$^{1}$,
+\newauthor{Thales Gutcke$^3$, Andrea V. Macci\`o$^{3,4}$}, Xi Kang$^{1}$\\
+$^1$Purple Mountain Observatory, 2 West Beijing Road, Nanjing 210008, China\\
+$^2$Xiamen Univeristy \\
+$^3$Max-Planck-Institut f\"ur Astronomie, K\"onigstuhl 17, 69117 Heidelberg, Germany\\
+$^4$New York University Abu Dhabi, PO Box 129188, Abu Dhabi, UAE}
+\begin{document}
+
+\date{to be submitted to }
+             
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}\pubyear{2016}
+
+\maketitle           
+
+\label{firstpage}
+             
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+  We use the NIHAO galaxy formation simulations to study ultra-violet (UV)
+  emission from circum-galactic medium (CGM) in galaxies ranging from dwarf
+  ($\Mhalo\sim10^{10} \Msun$) to Milky Way ($\Mhalo\sim10^{12} \Msun$)
+  masses. We analyze the spatially-extended structures of emission lines
+  from OVI and Ly$alpha$.
+\end{abstract}
+
+\begin{keywords}
+  galaxies: evolution -- galaxies: formation -- galaxies: dwarf -- galaxies: spiral -- 
+  methods: numerical -- cosmology: theory
+\end{keywords}
+
+\setcounter{footnote}{1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 1: INTRODUCTION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\label{sec:intro}
+
+This paper is organized as follows: The cosmological hydrodynamical
+simulations and the methodology for computing metal line emission
+are briefly described in  \S\ref{sec:method}; In \S\ref{sec:results} 
+we present the results including the Ly$alpha$ and OVI emission map,
+surface brightness and luminosity evolutions of all galaxies in NIHAO
+sample; \S\ref{sec:sum} gives discussion and  summary of our
+results.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 2 METHODOLOGY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methodology} 
+\label{sec:method}
+
+\subsection{Simulations}
+\label{sec:sims}
+
+The simulations studied in this work are from the NIHAO (Numerical
+Investigation of a Hundred Astrophysical Objects) project \citep{Wang15}.  
+The halos to be re-simulated with baryons have been extracted from 
+3 different pure N-body simulations with a box size of 60, 20 and 
+15 $h^{-1}$ Mpc respectively\citet{Dutton14}. 
+All halos across the whole mass range with typically a million dark
+matter particles inside the virial radius of the target halo at 
+redshift $z=0$.  
+We adopted the  latest compilation of cosmological
+parameters from the Planck  satellite \citep{Planck14}. 
+
+We use the SPH hydrodynamics code {\sc gasoline} \citep{Wadsley04},
+with a revised treatment of  hydrodynamics as described in
+\citet{Keller14}.  The code includes a subgrid model for turbulent
+mixing of metal and energy \citep{Wadsley08}, heating and cooling
+include photoelectric heating of dust grains, ultraviolet (UV) heating
+and ionization and  cooling due to hydrogen, helium and metals
+\citep{Shen10}.  The star formation and feedback modeling follows what
+was used in the MaGICC simulations \citep{Stinson13}.  There are two
+small changes in NIHAO simulations: The change in  number of neighbors
+and the new combination of softening length and  particle mass means
+the threshold for star formation increased from  9.3 to 10.3
+cm$^{-3}$, the increase of pre-SN feedback efficiency $\epsilon_{\rm
+  ESF}$, from 0.1 to 0.13.  The more detail on star formation and
+feedback modeling can be found in \citet{Wang15}.
+
+\subsection{Emissivity Calculation}
+\label{sec:emis}
+
+We first assign the number densities and temperatures of all gas particles
+inside $2 R_{\rm vir}$ to $200\times 200 \times 200$ grids according SPH
+spline kernel \citep{Monaghan85}:
+\begin{equation}
+W\left(r,h\right) = \frac{8}{\pi h^3}
+  %\begin{cases}
+  %1-6\left(\frac{r}{h}\right)^2+6\left(\frac{r}{h}\right)^3, & \quad 0\leq\frac{r}{h}\leq\frac{1}{2},\\
+  %2\left(1-\frac{r}{h}\right)^3, & \quad \frac{1}{2} < \frac{r}{h} \leq 1,\\
+  %0, & \quad \frac{r}{h} >1.\\
+  %\end{cases}
+\end{equation}
+
+The emissivities are computed as a function of gas temperature and 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 3 RESULTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+\label{sec:results}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SECTION 4: SUMMARY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Summary}
+\label{sec:sum}
+
+
+
+\section*{Acknowledgments} 
+
+{\sc Gasoline} was written by Tom Quinn and James Wadsley. Without
+their contribution, this paper would have been impossible.
+The simulations were performed on the {\sc theo} cluster of the
+Max-Planck-Institut f\"ur Astronomie and the {\sc hydra} cluster at
+the Rechenzentrum in Garching; and the Milky Way supercomputer, funded
+by the Deutsche Forschungsgemeinschaft (DFG) through Collaborative
+Research Center (SFB 881) "The Milky Way System" (subproject Z2),
+hosted and co-funded by the J\"ulich Supercomputing Center (JSC). We
+greatly appreciate the contributions of all these computing
+allocations. AVM acknowledge support through the
+Sonderforschungsbereich SFB 881 “The Milky Way System” (subproject A1)
+of the German Research Foundation (DFG).  The analysis made use of the
+pynbody package \citep{Pontzen13}.
+%
+The authors acknowledge support from the MPG-CAS through the
+partnership programme between the MPIA group lead by AVM and the PMO
+group lead by XK.
+LW acknowledges support of the MPG-CAS student
+programme.
+XK acknowledge the support from NSFC project
+No.11333008 and the ``Strategic Priority Research Program the Emergence
+of Cosmological Structures'' of the CAS(No.XD09010000).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  REFERENCES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\begin{thebibliography}{}
+
+%%AAAAAAAA
+
+% Extended Hot Halos around Isolated Galaxies Observed in the ROSAT All-Sky Survey
+\bibitem[Anderson et al.(2013)]{Anderson13} Anderson, M.~E., Bregman, J.~N., Dai, X.\ 2013, \apj, 762, 106
+
+% Fundamental differences between SPH and grid methods
+\bibitem[Agertz et al.(2007)]{Agertz07} Agertz, O., Moore, B., Stadel, J.\ 2007, \mnras, 380, 963
+
+%%BBBBBBBB
+
+%The Average Star Formation Histories of Galaxies in Dark Matter Halos
+% from z = 0-8
+\bibitem[Behroozi et al.(2013)]{Behroozi13} Behroozi, P.~S.,
+  Wechsler, R.~H., \& Conroy, C.\ 2013, \apj, 770, 57
+
+%A First Estimate of the Baryonic Mass Function of Galaxies
+\bibitem[Bell et al.(2003)]{Bell03} Bell, E.~F., McIntosh, D.~H., Katz, N., Weinberg, M.~D.,\ 2003, \apj, 585, 117
+
+% Multiscale Gaussian Random Fields and Their Application to Cosmological Simulations
+%\bibitem[Bertschinger(2001)]{Bertschinger01} Bertschinger, E.\ 2001, 
+%\apjs, 137, 1 
+
+% The Search for the Missing Baryons at Low Redshift
+\bibitem[Bregman (2007)]{Bregman07}
+Bregman, J.~N.\ 2007, ARAA, 45, 221
+
+%% CCCCCCCC
+
+%Where are the baryons
+\bibitem[Cen \& Ostriker (1999)]{Cen09} 
+Cen, R.~Y., Ostriker, J.~P.\ 1999, \apj, 514, 1
+
+
+
+%% DDDDDDDD
+
+%Dark halo response and the stellar initial mass function in early-type and late-type galaxies
+\bibitem[Dutton et al.(2011)]{Dutton11} Dutton, A.~A., Conroy, 
+  C., van den Bosch, F.~C., et al.\ 2011, \mnras, 416, 322
+  
+%The baryonic Tully-Fisher relation and galactic outflows
+\bibitem[Dutton(2012)]{Dutton12} Dutton, A.~A.\ 2012,
+  \mnras, 424, 3123
+  
+%Cold dark matter haloes in the Planck era: evolution of structural parameters for Einasto and NFW profiles
+\bibitem[Dutton \& Macci{\`o}(2014)]{Dutton14} Dutton,
+  A.~A., \& Macci{\`o}, A.~V.\ 2014, \mnras, 441, 3359 
+
+
+%% EEEEEEEEE
+
+    
+%% FFFFFFFFF
+
+% The Cosmic Baryon Budget
+\bibitem[Fukugita et al.(1998)]{Fukugita98} Fukugita, M., Hogan, C.~J., Peebles, P.~J.~F.\ 1998, \apj, 503, 518
+
+%% GGGGGGGGG
+
+
+
+
+%% HHHHHHHHH
+
+
+
+%% JJJJJJJJJJJ
+
+
+%% KKKKKKKKKKK
+
+%A superbubble feedback model for galaxy simulations
+\bibitem[Keller et al.(2014)]{Keller14} Keller, B.~W., Wadsley, 
+  J., Benincasa, S.~M., \& Couchman, H.~M.~P.\ 2014, \mnras, 442, 3013
+
+% Stellar mass -- halo mass relation and star formation efficiency in
+% high-mass halos
+\bibitem[Kravtsov et al.(2014)]{Kravtsov14} Kravtsov, A., 
+Vikhlinin, A., \& Meshscheryakov, A.\ 2014, arXiv:1401.7329 
+
+  
+%% LLLLLLLLL
+
+
+%% MMMMMMMMM
+
+% The Baryon Content of Cosmic Structures
+\bibitem[McGaugh et al.(2010)]{McGaugh10} McGaugh, S.~S., 
+Schombert, J.~M., de Blok, W.~J.~G., Zagursky, M.~J.\ 2010, \mnras,
+708, 14
+
+% A refined particle method for astrophysical problems
+\bibitem[Monaghan \& Lattanzio(1985)]{Monaghan85} Monaghan, J.~J., Lattanzio, J.~C., 1985, \aap, 149, 135
+
+% Galactic star formation and accretion histories from matching galaxies to dark matter haloes
+\bibitem[Moster et al.(2013)]{Moster13} Moster, B.~P., Naab, T., 
+\& White, S.~D.~M.\ 2013, \mnras, 428, 3121 
+
+
+
+
+
+%% NNNNNNNNN
+
+
+
+
+%% OOOOOOOO
+
+
+%% PPPPPPPPP
+
+%Planck 2013 results. XVI. Cosmological parameters
+\bibitem[the Planck Collaboration et  al.(2014)]{Planck14}
+  Planck Collaboration, Ade, P.~A.~R., Aghanim, N., et al.\ 2014,
+  \aap, 571, AA16 
+ 
+% A Budget and Accounting of Metals at z ~ 0: Results from the COS-Halos Survey
+\bibitem[Peeples et al.(2014)]{Peeples14} Peeples, M.~S., Werk, J.~K., Tumlinson, J., et al.\ 2014, \apj, 786, 54
+
+% Dark MaGICC: the effect of dark energy on disc galaxy formation. Cosmology does matter
+%\bibitem[Penzo et al.(2014)]{Penzo14} Penzo, C., Macci{\`o}, 
+%  A.~V., Casarini, L., Stinson, G.~S., \& Wadsley, J.\ 2014, \mnras, 442, 176
+
+% The baryon content of the universe
+\bibitem[Persic \& Salucci(1992)]{Persic92} Persic, M., Salucci, P.\ 1992, \mnras, 258, 14
+
+%pynbody: N-Body/SPH analysis for python
+\bibitem[Pontzen et al.(2013)]{Pontzen13} Pontzen, A., Ro{\v s}kar, R., Stinson, G., \& Woods, R.\ 2013, Astrophysics Source Code Library, 1305.002 
+
+
+%% RRRRRRRRRRR
+
+%Evolution of the Mass-Metallicity Relations in Passive and Star-forming Galaxies from SPH-cosmological Simulations
+  
+%Multiphase smoothed-particle hydrodynamics
+%\bibitem[Ritchie \& Thomas(2001)]{Ritchie01} Ritchie, B.~W.,
+%  \& Thomas, P.~A.\ 2001, \mnras, 323, 743
+
+%% SSSSSSSSSSSS
+
+% The enrichment of the intergalactic medium with adiabatic feedback - I. Metal cooling and metal diffusion
+\bibitem[Shen et al.(2010)]{Shen10} Shen, S., Wadsley, J., 
+\& Stinson, G.\ 2010, \mnras, 407, 1581 
+
+% The Baryon Census in a Multiphase Intergalactic Medium: 30% of the Baryons May Still be Missing
+\bibitem[Shull et al.(2012)]{Shull12}
+Shull, J.~M., Smith, B.~D., Danforth, C.~W.\ 2012, \apj, 759, 23
+
+%Making Galaxies In a Cosmological Context: the need for early stellar feedback
+\bibitem[Stinson et al.(2013)]{Stinson13} Stinson, G.~S., Brook, 
+C., Macci{\`o}, A.~V., et al.\ 2013, \mnras, 428, 129 
+
+
+
+%% TTTTTTTTTTT
+
+% Not Dead Yet: Cool Circumgalactic Gas in the Halos of Early-type Galaxies
+\bibitem[Thom et al.(2012)]{Thom12}
+Thom, C., Tumlinson, J., Werk, J.~K.\ 2012, \apjl, 758, L41
+
+% The Large, Oxygen-Rich Halos of Star-Forming Galaxies Are a Major Reservoir
+% of Galactic Metals
+\bibitem[Tumlinson et al.(2011)]{Tumlinson11} Tumlinson, J., Thom, C., Werk, J., et al.\ 2011, Science, 334, 948
+
+% The COS-Halos Survey: Rationale, Design and a Census of Circumgalactic Neutral Hydrogen
+\bibitem[Tumlinson et al.(2013)]{Tumlinson13} Tumlinson, J., Thom, C., Werk, J., et al.\ 2013, \apj, 777, 59
+
+%% VVVVVVVVVVVV
+
+
+
+%% WWWWWWWWWWWWWW
+
+%Gasoline: a flexible, parallel implementation of TreeSPH
+\bibitem[Wadsley et al.(2004)]{Wadsley04} Wadsley, J.~W., Stadel, 
+J., \& Quinn, T.\ 2004, \na, 9, 137 
+
+%On the treatment of entropy mixing in numerical cosmology
+\bibitem[Wadsley et al.(2008)]{Wadsley08} Wadsley, J.~W., 
+Veeravalli, G., \& Couchman, H.~M.~P.\ 2008, \mnras, 387, 427 
+
+  %NIHAO project I: Reproducing the inefficiency of galaxy formation across cosmic time with a large sample of cosmological hydrodynamical simulations
+\bibitem[Wang et al.(2015)]{Wang15} Wang, L., Dutton, A.~A.,  Stinson, G.~S., et al.\ 2015, \mnras, 454, 83
+  
+% The COS-Halos Survey: Keck LRIS and Magellan MagE Optical Spectroscopy
+\bibitem[Werk et al.(2012)]{Werk12} Werk, J.~k., Prochaska, J.~X., Thom, C., et al.\ 2012, \apjs, 198, 3
+
+% The COS-Halos Survey: An Empirical Description of Metal-line Absorption in the Low-redshift Circumgalactic Medium
+\bibitem[Werk et al.(2013)]{Werk13} Werk, J.~k., Prochaska, J.~X., Thom, C., et al.\ 2013, \apjs, 204, 17
+
+%The COS-Halos Survey: Physical Conditions and Baryonic Mass in the Low-redshift Circumgalactic Medium
+\bibitem[Werk et al.(2014)]{Werk14} Werk, J.~k., Prochaska, J.~X., Thom, C., et al.\ 2014, \apj, 792, 8
+
+
+%% YYYYYYYYYYYY
+
+
+%% ZZZZZZZZZZZZZ
+
+\end{thebibliography}
+
+\label{lastpage}
+\end{document}
