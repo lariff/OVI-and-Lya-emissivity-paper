@@ -34,6 +34,7 @@
 \def \hi       {\ion{H}{I}}
 \def \hii      {\ion{H}{II}}
 \def \oii      {[\ion{O}{II}]}
+\def \ovi      {\ion{O}{VI}}
 
 %%UNITS
 \def \kmsmpc {\>{\rm km}\,{\rm s}^{-1}\,{\rm Mpc}^{-1}}
@@ -106,7 +107,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title[OVI Emssivity] {HI and OVI Emission from the Circum-Galactic Medium
+\title[\hi{} and \ovi{} Emssivity] {\hi{} and \ovi{} Emission from the Circum-Galactic Medium
  with a large sample of cosmological hydrodynamical simulations}
 
 \author[Zhang et al.]{Shuinai Zhang$^{1}$\thanks{snzhang@pmo.ac.cn}, Liang Wang$^{1,3}$,Taotao Fang$^{2}$, Li Ji$^{1}$,Thales Gutcke$^3$, 
@@ -132,7 +133,7 @@ $^4$New York University Abu Dhabi, PO Box 129188, Abu Dhabi, UAE}
   emission from circum-galactic medium (CGM) in galaxies ranging from dwarf
   ($\Mhalo\sim10^{10} \Msun$) to Milky Way ($\Mhalo\sim10^{12} \Msun$)
   masses. We analyze the spatially-extended structures of emission lines
-  from OVI and Ly$\alpha$.
+  from \ovi{} and \hi{}.
 \end{abstract}
 
 \begin{keywords}
@@ -151,24 +152,44 @@ $^4$New York University Abu Dhabi, PO Box 129188, Abu Dhabi, UAE}
 
 {\bf Why the CGM is important}
 
-The hot and cold gas phases were indicated by OVI and HI ions in observation
-commomly.
+The hot and cold gas phases were indicated by \ovi{} and \hi{} ions in observation
+commomly. 
 
-{\bf What can we gain from  HI and OVI in CGM}
+{\bf What can we gain from  \hi{} and \ovi{} in CGM}
 
-\citet{Gutcke16} compared the column density profiles of OVI and HI
-in CGM with observations.
+\citet{Gutcke16} compared the column density profiles of \ovi{} and \hi{}
+in CGM of galaxies of the cosmologycal hydrodynamical simulation suite 
+NIHAO \citep{Wang15} with observations, studied the covering fraction of 
+dense \hi{}, looked at the shape of the CGM and its chemical composition.
+The simulations have a good agreement with observations and show observers
+and modellers can compare with them in future studies. 
 
-{\bf What is the advantage of emssion line of HI and OVI}
+However, the works mentioned above all relate to the absorption lines of
+\hi{} and \ovi{}, there are rare simulations comparing the emission lines
+of them with observations.
+{\bf What is the advantage of emssion line of \hi{} and \ovi{}}
 
 \citet{Sravan15} studied ultra-violet (UV) metal line emission from the CGM
 of high-redshift ($z=2-4$) galaxies using cosmological simulations from the 
 Feedback in Realistic Environments (FIRE) project.
+For each simulation, they predicted the emission from multiple metal lines
+including \hi{} and \ovi{}, and found more massive haloes are on average 
+more UV-luminous and the UV metal line emission is primarily from collisionally
+ionized gas and strongly time variable. The high UV-luminous event correspond
+high star formation and \ion{C}{III}, \ion{Si}{III}, \ion{C}{IV} and \ion{Si}{IV}
+should be detectable by current and upcoming intergral field spectrographs such
+as the Multi Unit Spectroscopic Explorer (MUSE{\bf citation}).
+
+In this paper we investigate the CGM \ovi{} and \hi{} emissivity distribution
+and shape in Numerical Investigation of a Hundred Astrophysical Objects,
+NIHAO \citep{Wang15} project.
+NIHAO project produced nearly 100 hydrodynamical, cosmological zoom-in galaxies
+across a range in mass from
 
 This paper is organized as follows: The cosmological hydrodynamical
 simulations and the methodology for computing metal line emission
 are briefly described in  \S\ref{sec:method}; In \S\ref{sec:results} 
-we present the results including the Ly$\alpha$ and OVI emission map,
+we present the results including the \hi{} and \ovi{} emission map,
 surface brightness and luminosity evolutions of all galaxies in NIHAO
 sample; \S\ref{sec:sum} gives discussion and  summary of our
 results.
@@ -186,8 +207,7 @@ results.
 \subsection{Simulations}
 \label{sec:sims}
 
-The simulations studied in this work are from the NIHAO (Numerical
-Investigation of a Hundred Astrophysical Objects) project \citep{Wang15}.  
+The simulations studied in this work are from the NIHAO project \citep{Wang15}.  
 The halos to be re-simulated with baryons have been extracted from 
 3 different pure N-body simulations with a box size of 60, 20 and 
 15 $h^{-1}$ Mpc respectively\citet{Dutton14}. 
@@ -236,19 +256,19 @@ $?? < n_H < ?? {\rm cm}^{-3}$ in intervals of $\Delta \log_{10} n_H = ??$.
 The grids are computed at redshift z = 0 assuming gas is of solar metallicity,
 optical thin and {\bf blabla}.
 
-To compute the HI neutral fraction, like \citep{Gutcke16}, we used the 
+To compute the \hi{} neutral fraction, like \citep{Gutcke16}, we used the 
 self-shielding approximation presented in \citep{Rahmati13}.
-{\bf say more detail about it}. Contrastly, To compute the OVI, the 
+{\bf say more detail about it}. Contrastly, To compute the \ovi{}, the 
 self-shielding approximation is not necessary to consider. {\bf reason}
 
 \subsection{Luminosity Calculation}
 \label{sec:lum}
 
-In order to estimate the evolution of total OVI and HI luminosities inside
+In order to estimate the evolution of total \ovi{} and \hi{} luminosities inside
 $2 \Rvir$, we employ the grids 
 of emissivities computed since z=4 to present to evaluate the evolution of 
 luminosities of all galaxies in NIHAO sample from particle data directly.
-The method is similar to the one used by \citep{Sravan15}, the OVI and HI 
+The method is similar to the one used by \citep{Sravan15}, the \ovi{} and \hi{} 
 luminosities of each gas particle are calculated as
 \begin{equation}
 L = \epsilon_{\odot}\left(z,n_H,T\right)\left(\frac{m_{gas}}{\rho_{gas}}\right)
@@ -268,7 +288,7 @@ emissivities with given redshift, hydrogen number density and temperature.
 \section{Results}
 \label{sec:results}
 
-\subsection{OVI and HI Emissivity Maps and Radial Profile}
+\subsection{\protect\ovi{} and \protect\hi{} Emissivity Maps and Radial Profile}
 \label{sec:map_rp}
 
 \subsection{Evolution of Luminosities}
